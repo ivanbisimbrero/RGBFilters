@@ -51,6 +51,33 @@ void Image::readImage(const string& filename) {
     this->pixels = pixel_matrix;
 }
 
+void Image::writeImage(const string& filename) {
+    if (pixels.empty() || pixels[0].empty()) {
+        throw runtime_error("Image has no pixel data to write");
+    }
+    ofstream file(filename);
+    if (!file) {
+        throw runtime_error("Could not open file for writing");
+    }
+    
+    int max_value = 0;
+    for (const auto& row : pixels) {
+        for (const auto& pixel : row) {
+            max_value = max({max_value, pixel.r, pixel.g, pixel.b});
+        }
+    }
+    file << "P3\n";
+    file << width << " " << height << "\n";
+    file << max_value << "\n";
+    for (const auto& row : pixels) {
+        for (const auto& pixel : row) {
+            file << pixel.r << " " << pixel.g << " " << pixel.b << " ";
+        }
+        file << "\n";
+    }
+    file.close();
+}
+
 // void Image::readImage(const string& filename) {
 //     ifstream file(filename);
 //     if (!file.is_open()) {

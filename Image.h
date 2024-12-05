@@ -21,9 +21,6 @@ class Image {
         void readImage(const string& filename);
         
         Image* getImage();
-
-        int getWidth();
-        int getHeight();
 };
 
 #endif // IMAGE_H

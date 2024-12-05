@@ -17,5 +17,6 @@ int main() {
         std::cout << "\n";
     }
     cout << img.width << " " << img.height << "\n";
+    img.writeImage("images/medium_copy.ppm");
     return 0;
 }
