@@ -2,6 +2,9 @@
 #define GRAYSCALE_H
 
 #include "Image.h"
+#include <chrono>
+
+using namespace std::chrono;
 
 class GrayScale : public Image {
     public:
