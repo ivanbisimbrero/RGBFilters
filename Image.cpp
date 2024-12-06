@@ -63,7 +63,9 @@ void Image::writeImage(const string& filename) {
     int max_value = 0;
     for (const auto& row : pixels) {
         for (const auto& pixel : row) {
-            max_value = max({max_value, pixel.r, pixel.g, pixel.b});
+            int max_rgb = std::max(pixel.r, std::max(pixel.g, pixel.b));
+            max_value = std::max(max_value, max_rgb);
+
         }
     }
     file << "P3\n";
