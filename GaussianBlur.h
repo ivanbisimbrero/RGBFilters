@@ -10,13 +10,15 @@ class GaussianBlur {
     public:
         GaussianBlur();
         GaussianBlur(Image& image);
-
-        void filterCreation(double GKernel[][5]);
-        vector<vector<Pixel> > convolution(double GKernel[][5], int iterations);
+        // Sequential methods
+        void sequentialFilterCreation(double GKernel[][5]);
+        vector<vector<Pixel> > sequentialConvolution(double GKernel[][5], int iterations);
+        // Parallelised methods
+        void parallelFilterCreation(double GKernel[][5]);
+        vector<vector<Pixel> > parallelConvolution(double GKernel[][5], int iterations);
     private:
         vector<vector<Pixel> > pixels;
         int width, height = 0;
-        
 };
 
 #endif // GAUSSIANBLUR_H
