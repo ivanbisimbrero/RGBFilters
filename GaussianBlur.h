@@ -1,5 +1,5 @@
 #ifndef GAUSSIANBLUR_H
-#define GUASSIANBLUR_H
+#define GAUSSIANBLUR_H
 
 #include <vector>
 #include "Image.h"
@@ -11,8 +11,8 @@ class GaussianBlur {
         GaussianBlur();
         GaussianBlur(Image& image);
 
-        vector<vector<int>> generateKernel(int size, double sigma);
-        void applyBlur(vector<vector<int> >& kernel, const string& filename);
+        void filterCreation(double GKernel[][5]);
+        vector<vector<Pixel> > convolution(double GKernel[][5], int iterations);
     private:
         vector<vector<Pixel> > pixels;
         int width, height = 0;
