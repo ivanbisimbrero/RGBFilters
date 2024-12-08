@@ -15,8 +15,8 @@ class Median {
         Median();
         Median(const Image& img);
         void applyMedianFilter(int windowSize);
-        vector<vector<Pixel>> createWindow(int x, int y, int windowSize);
-        void adjustWindowWithTheMedian(int x, int y, vector<vector<Pixel>> window);
+        Pixel adjustWindowWithTheMedian(int x, int y, int displacement, int M);
+        int medianValue(const vector<int>& vec);
 };
 
 #endif

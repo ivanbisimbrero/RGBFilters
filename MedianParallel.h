@@ -15,8 +15,8 @@ class MedianParallel {
         MedianParallel();
         MedianParallel(const Image& img);
         void applyMedianFilterParallel(int windowSize);
-        vector<vector<Pixel>> createWindowParallel(int x, int y, int windowSize);
-        void adjustWindowWithTheMedianParallel(int x, int y, vector<vector<Pixel>> window);
+        Pixel adjustWindowWithTheMedianParallel(int x, int y, int displacement, int M);
+        int medianValue(const vector<int>& vec);
 };
 
 #endif
