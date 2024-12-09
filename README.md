@@ -40,6 +40,8 @@ Speedup: 5.1692x
 Writing to file: output/blurred_small.ppm
 
 Median Speedup: 3.50561x
+```
+
 ```bash
 output
 ├── blurred_large.ppm
