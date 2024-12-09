@@ -63,7 +63,9 @@ void Image::writeImage(const string& filename) {
     int max_value = 0;
     for (const auto& row : pixels) {
         for (const auto& pixel : row) {
-            max_value = max({max_value, pixel.r, pixel.g, pixel.b});
+            int max_rgb = std::max(pixel.r, std::max(pixel.g, pixel.b));
+            max_value = std::max(max_value, max_rgb);
+
         }
     }
     file << "P3\n";
@@ -77,78 +79,3 @@ void Image::writeImage(const string& filename) {
     }
     file.close();
 }
-
-// void Image::readImage(const string& filename) {
-//     ifstream file(filename);
-//     if (!file.is_open()) {
-//         cerr << "Error al abrir el archivo: " << filename << endl;
-//         exit(EXIT_FAILURE);
-//     }
-
-//     string line;
-//     bool readingImage = false;
-//     int row = 0;
-
-//     // Read each one of the lines in the .ppm file
-//     while (getline(file, line)) {
-//         // Skip P3
-//         if(line[0] == 'P' && line[1] == '3') {
-//             continue;
-//         }
-//         // Skip comments
-//         if (line[0] == '#') {
-//             continue;
-//         }
-        
-//         // Skip the first line
-//         if (line.empty()) {
-//             readingImage = true;
-//             continue;
-//         }
-        
-//         if (readingImage) {
-//             vector<Pixel> pixelRow;
-//             stringstream ss(line);
-//             string number;
-
-//             // Method Buxtamante
-//             // int rgb[3] = {0, 0, 0};
-//             // int col = 0;
-//             // while (getline(ss, number, ' ') && (col % 3 == 0)) {
-//             //     int rgbIndex = col % 3;
-//             //     rgb[rgbIndex] = stoi(number);
-//             //     if (rgbIndex == 2) {
-//             //         Pixel pixel(rgb[0], rgb[1], rgb[2]);
-//             //         pixelRow.push_back(pixel);
-//             //     }
-//             //     col++;
-//             // }
-//             // pixels.push_back(pixelRow);
-//             // row++;
-
-//             // Method Onichan
-//             int rgb[3] = {0,0,0};
-//             int idxRGB = 0;        
-//             for(int i = 0; i < line.size(); ++i) {
-//                 if(line[i] != ' ') {
-//                     string digit = "";
-//                     while(line[i] != ' ') {
-//                         digit += line[i];
-//                         i++;
-//                     }
-//                     rgb[idxRGB] = stoi(digit);
-//                     idxRGB++;
-//                     if(idxRGB % 3 == 0) {
-//                         Pixel pixel(rgb[0],rgb[1],rgb[2]);
-//                         pixelRow.push_back(pixel);
-//                         idxRGB = 0;
-//                     }
-//                 }
-//             }
-//             pixels.push_back(pixelRow);
-//             row++;
-//         }
-//     }
-
-//     file.close();
-// }
